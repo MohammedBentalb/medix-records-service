@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('medicine_name', 255);
             $table->string('dosage', 100);
             $table->string('frequency', 100);
-            $table->smallInteger('duration_days');
+            $table->smallInteger('duration');
             $table->string('route', 20)->default('oral');
-            $table->text('instructions')->nullable();
+            $table->text('instructions');
             $table->timestamps();
 
             $table->foreign('prescription_id')->references('id')->on('prescriptions')->cascadeOnDelete();

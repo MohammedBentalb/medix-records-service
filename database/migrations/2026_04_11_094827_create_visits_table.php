@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('doctor_id');
             $table->timestampTz('visited_at')->useCurrent();
             $table->text('chief_complaint');
-            $table->text('clinical_notes')->nullable();
+            $table->text('clinical_notes');
             $table->timestamps();
         });
     }

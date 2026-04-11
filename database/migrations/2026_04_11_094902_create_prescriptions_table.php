@@ -16,8 +16,7 @@ return new class extends Migration
             $table->uuid('visit_id')->unique();
             $table->uuid('patient_id');
             $table->uuid('doctor_id');
-            $table->date('valid_until')->nullable();
-            $table->text('notes')->nullable();
+            $table->text('notes');
             $table->timestamps();
 
             $table->foreign('visit_id')->references('id')->on('visits')->cascadeOnDelete();

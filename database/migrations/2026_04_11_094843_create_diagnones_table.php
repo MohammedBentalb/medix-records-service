@@ -1,5 +1,7 @@
 <?php
 
+use App\MaladySeverityEnum;
+use App\MaladyTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,20 +17,16 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('visit_id');
             $table->string('name', 255);
-            $table->string('type', 20)->default('primary');
-            $table->string('severity', 20)->nullable();
-            $table->text('notes')->nullable();
+            $table->enum('type',  array_column(MaladyTypeEnum::cases(), 'value'));
+            $table->enum('severity', array_column(MaladySeverityEnum::cases(), 'value'));
+            $table->text('notes');
             $table->timestamps();
 
             $table->foreign('visit_id')->references('id')->on('visits')->cascadeOnDelete();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
+    public function down(): void {
         Schema::dropIfExists('diagnoses');
     }
 };
