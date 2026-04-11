@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Enums;
 
 enum MaladyTypeEnum: string {
     case PRIMARY = 'PRIMARY';

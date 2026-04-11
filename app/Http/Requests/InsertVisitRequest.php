@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\MaladySeverityEnum;
-use App\MaladyTypeEnum;
-use App\MedicineRouteEnum;
+use App\Enums\MaladySeverityEnum;
+use App\Enums\MaladyTypeEnum;
+use App\Enums\MedicineRouteEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

@@ -1,7 +1,7 @@
 <?php
 
-use App\MaladySeverityEnum;
-use App\MaladyTypeEnum;
+use App\Enums\MaladySeverityEnum;
+use App\Enums\MaladyTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

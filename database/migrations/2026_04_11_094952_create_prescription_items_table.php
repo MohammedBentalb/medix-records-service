@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\MedicineRouteEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->string('dosage', 100);
             $table->string('frequency', 100);
             $table->smallInteger('duration');
-            $table->string('route', 20)->default('oral');
+            $table->string('route', 20)->default(MedicineRouteEnum::ORAL->value);
             $table->text('instructions');
             $table->timestamps();
 

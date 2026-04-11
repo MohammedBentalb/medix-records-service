@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Enums;
 
 enum MaladySeverityEnum: string {
     case MODERATE = 'MODERATE';

@@ -6,10 +6,11 @@ COPY --from=mlocati/php-extension-installer \
 
 RUN apk add --no-cache \
     bash \
-    unzip \ 
+    unzip \
     git \
     zip \
-    curl
+    curl \
+    supervisor
 
 RUN install-php-extensions \
     pdo_pgsql \
@@ -35,6 +36,8 @@ RUN composer dump-autoload --optimize
 
 RUN chown -R www-data:www-data /var/www/html
 
+COPY ./docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 EXPOSE 9000
 
-CMD ["php-fpm"]
+CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

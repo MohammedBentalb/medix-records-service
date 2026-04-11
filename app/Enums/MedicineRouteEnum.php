@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Enums;
 
 enum MedicineRouteEnum: string {
     case ORAL = "ORAL";

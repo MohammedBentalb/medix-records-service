@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['prescription_id', 'medicine_name', 'dosage', 'frequency', 'duration_days', 'route', 'instructions'])]
+#[Fillable(['prescription_id', 'medicine_name', 'dosage', 'frequency', 'duration', 'route', 'instructions'])]
 class PrescriptionItem extends Model {
     use HasUuids;
 
     protected function casts(): array {
-        return ['duration_days' => 'integer'];
+        return ['duration' => 'integer'];
     }
 
     public function prescription(): BelongsTo {

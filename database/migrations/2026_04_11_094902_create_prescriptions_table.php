@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('visit_id')->unique();
-            $table->uuid('patient_id');
-            $table->uuid('doctor_id');
             $table->text('notes');
             $table->timestamps();
 
@@ -26,8 +24,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
+    public function down(): void {
         Schema::dropIfExists('prescriptions');
     }
 };

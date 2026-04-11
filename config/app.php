@@ -84,6 +84,17 @@ return [
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
+
+    /*
+    |
+    | this is a token used to verify the request comming from other services to verify that they are realy mine
+    |
+    */
+
+    "internal_token" => env('INTERNAL_SERVICE_TOKEN'),
+    'discovery_url' => env('DISCOVERY_SERVICE_URL'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
@@ -108,7 +119,7 @@ return [
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver
-    |--------------------------------------------------------------------------
+    |--------------------------------------------------------------------------a
     |
     | These configuration options determine the driver used to determine and
     | manage Laravel's "maintenance mode" status. The "cache" driver will

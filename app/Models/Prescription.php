@@ -8,13 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['visit_id', 'patient_id', 'doctor_id', 'valid_until', 'notes'])]
+#[Fillable(['visit_id', 'notes'])]
 class Prescription extends Model {
     use HasUuids;
-
-    protected function casts(): array {
-        return ['valid_until' => 'date'];
-    }
 
     public function visit(): BelongsTo {
         return $this->belongsTo(Visit::class);

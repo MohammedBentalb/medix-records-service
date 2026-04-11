@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Middleware\InternalServiceMiddleware;
+use App\Http\Responses\ApiResponse;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Validation\ValidationException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,8 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias(['internal' => InternalServiceMiddleware::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->shouldRenderJsonWhen(fn() => true);
+        
+        $exceptions->render(function(ValidationException $e){
+            return ApiResponse::validationError($e->errors());
+        });
     })->create();
