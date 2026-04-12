@@ -9,7 +9,7 @@ use App\DTO\VisitDTO;
 use App\Http\Requests\InsertVisitRequest;
 use App\Http\Responses\ApiResponse;
 use App\Http\Resources\VisitResource;
-use App\Models\Visit;
+use Illuminate\Http\Request;
 
 class VisitsController extends Controller {
     public function store(InsertVisitRequest $request, CreateVisitAction $createVisitAction) {
@@ -21,7 +21,7 @@ class VisitsController extends Controller {
         return ApiResponse::success(new VisitResource($showVisitAction->execute($id)));
     }
 
-    public function patientRecords(string $patientId, ShowPatientVisitsAction $showPatientVisitsAction) {
-        return ApiResponse::success(VisitResource::collection($showPatientVisitsAction->execute($patientId)));
+    public function patientRecords(string $patientId, Request $request, ShowPatientVisitsAction $showPatientVisitsAction) {
+        return ApiResponse::VisitsWithPaginationResponse($showPatientVisitsAction->execute($patientId, $request));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Responses;
 
+use App\Http\Resources\VisitResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
@@ -37,5 +38,17 @@ final class ApiResponse {
             'request_id' => request()->header('X-Request-Id', Str::uuid7()),
             'timestamp' => now()->toIso8601String(),
         ];
+    }
+    
+    public static function VisitsWithPaginationResponse($paginator): JsonResponse {
+        return ApiResponse::success([
+            'visits' => VisitResource::collection($paginator->items()),
+            'pagination' => [
+                'total' => $paginator->total(),
+                'perPage' => $paginator->perPage(),
+                'currentPage' => $paginator->currentPage(),
+                'lastPage' => $paginator->lastPage(),
+            ],
+        ]);
     }
 }
